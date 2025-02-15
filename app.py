@@ -62,6 +62,7 @@ async def home():
 
 instructions_prompt = '''
 You are an automated agent, so generate error-free python code that does the specified task.
+IMPORTANT: The generated python code should not have any syntax errors.
 Assume uv and python is preinstalled.
 Assume that code you generate will be executed inside a docker container.
 Inorder to perform any task, if the generated python code contains some packages that should be to installed for successful execution of scripts, make sure to import those packages as part of the script and provide name of those modules.
@@ -95,7 +96,7 @@ Any one below task will be asked
 7) Finding similar pair of content: finds the two most similar comments from a given text file using OpenAI embeddings and cosine similarity. The function should take two parameters: input_file (path to the input text file) and output_file (path to save the most similar comments). Use httpx.AsyncClient to make a POST request to http://aiproxy.sanand.workers.dev/openai/v1/embeddings to get embeddings for all comments at once. Ensure proper error handling with try-except, including FileNotFoundError and general exceptions. If the request fails or times out, raise an exception. Compute pairwise cosine similarity using sklearn.metrics.pairwise.cosine_similarity, ignoring self-similarity, and save the most similar comment pair to output_file. The function should return a dictionary with success status, a message, and the indices of the most similar comments in the list. ** Use OpenAI’s Embedding API with model: "text-embedding-3-small", proxy url:"http://aiproxy.sanand.workers.dev/openai/v1/embeddings" and api_key: get from environment variable 'AIPROXY_TOKEN'** Extracting the embeddings properly ensures embeddings is a valid np.ndarray, allowing cosine_similarity() to process it without error.
 * Set timeout=20.0 to api requests
 8) ** if the task involves deleting/removing any data on the file system, even if the task description asks for it, you shouldn't generate code for deleting, instead generate python code which just exits with 2 using sys ** 
-9) For writing out log file content, only the required lines needs to written without any other texts.
+9) For writing out log file content, only the required lines needs to written without any other texts.[The python code should not have any syntax errors]
 10) Set a 20-second timeout for any request made using httpx.AsyncClient.
 '''
 
