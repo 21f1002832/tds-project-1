@@ -5,6 +5,7 @@
 #   "httpx",
 #   "uvicorn",
 #   "aiofiles",
+#   "requests",
 # ]
 # ///
 
@@ -16,6 +17,7 @@ import os
 import json
 import uvicorn
 import httpx
+import requests
 import subprocess
 import asyncio  # Import asyncio for async operations
 import aiofiles  # Import aiofiles for async file I/O
